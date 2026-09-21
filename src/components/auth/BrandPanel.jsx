@@ -1,7 +1,7 @@
 /** Lado esquerdo da tela de acesso — identidade visual do produto. */
 export default function BrandPanel() {
   return (
-    <div className="flex flex-col justify-center px-[7vw] max-lg:px-[8vw] max-lg:pb-5 max-lg:pt-[60px]">
+    <div className="flex h-full flex-col items-center justify-center px-[7vw] max-lg:px-[8vw] max-lg:pb-5 max-lg:pt-[60px]">
       <div className="mb-[34px] flex items-center gap-[26px]">
         <span className="flex h-[92px] w-[92px] shrink-0 items-center justify-center rounded-full bg-ink font-serif text-[30px] tracking-tight text-cream">
           MF
