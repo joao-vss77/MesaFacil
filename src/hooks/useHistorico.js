@@ -1,9 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { useStore } from './useStore.js';
+import { supabase } from '../lib/supabase.js';
+import { checar } from '../lib/checar.js';
 
 /** Histórico de vendas e indicadores derivados (RF11). */
 export function useHistorico() {
-  const { db, setDb } = useStore();
+  const { db, setDb, gravar } = useStore();
   const { historico } = db;
 
   const resumo = useMemo(() => {
@@ -15,7 +17,10 @@ export function useHistorico() {
     };
   }, [historico]);
 
-  const limpar = useCallback(() => setDb((atual) => ({ ...atual, historico: [] })), [setDb]);
+  const limpar = useCallback(() => {
+    setDb((atual) => ({ ...atual, historico: [] }));
+    gravar(async () => checar(await supabase.from('vendas').delete().neq('id', -1)));
+  }, [setDb, gravar]);
 
   return { historico, resumo, limpar };
 }

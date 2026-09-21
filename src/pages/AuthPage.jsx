@@ -18,8 +18,8 @@ export default function AuthPage() {
 
   const destino = location.state?.from?.pathname ?? '/';
 
-  const handleLogin = (form) => {
-    const resultado = entrar(form);
+  const handleLogin = async (form) => {
+    const resultado = await entrar(form);
     if (resultado.ok) {
       notificar(`Bem-vindo, ${resultado.usuario.nome.split(' ')[0]}!`);
       navigate(destino, { replace: true });
@@ -27,8 +27,8 @@ export default function AuthPage() {
     return resultado;
   };
 
-  const handleCadastro = (form) => {
-    const resultado = cadastrar(form);
+  const handleCadastro = async (form) => {
+    const resultado = await cadastrar(form);
     if (resultado.ok) {
       notificar('Cadastro realizado com sucesso.');
       navigate('/', { replace: true });
