@@ -17,12 +17,12 @@ export default function LoginForm({ onSubmit, onTrocarModo }) {
     setErros((atual) => ({ ...atual, [campo]: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validacao = validarLogin(form);
     if (temErros(validacao)) return setErros(validacao);
 
-    const resultado = onSubmit(form);
+    const resultado = await onSubmit(form);
     if (!resultado?.ok) setErros(resultado?.erros ?? {});
   };
 
