@@ -25,9 +25,12 @@ export function AuthProvider({ children }) {
       setUsuario(montarUsuario(data.session?.user));
       setCarregando(false);
     });
+
     const { data } = supabase.auth.onAuthStateChange((_evento, session) => {
       setUsuario(montarUsuario(session?.user));
+      setCarregando(false);
     });
+
     return () => data.subscription.unsubscribe();
   }, []);
 
